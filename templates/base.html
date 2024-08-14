@@ -22,14 +22,34 @@
         <li class="link"><a href="#">Home</a></li>
         <li class="link"><a href="#">Blog</a></li>
         <li class="link"><a href="#">Sandbox</a></li>
-        <li class="link"><a href="#">Contact Us</a></li>
+        <li class="link"><a href="#contact">Contact Us</a></li>
       </ul>
-      <button onclick="window.location.href='/master_admin'">Master Admin</button>
-
-      <button class="btn">
-        <a href="{{ url_for('history') }}" onclick="submitPhoneNumber(event)">History</a>
-      </button>
+      <div class="nav__buttons">
+        <button class="btn" onclick="window.location.href='/master_admin'">Master Admin</button>
+        <button class="btn">
+          <a href="{{ url_for('history') }}" onclick="submitPhoneNumber(event)">History</a>
+        </button>
+      </div>
+      <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
     </nav>
+
+    <!-- Sidebar for smaller screens -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar__logo">Medpiper<span>Health</span></div>
+      <ul class="sidebar__links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Sandbox</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+      <div class="sidebar__buttons">
+        <button class="btn" onclick="window.location.href='/master_admin'">Master Admin</button><br>
+        <button class="btn">
+          <a href="{{ url_for('history') }}" onclick="submitPhoneNumber(event)">History</a>
+        </button>
+      </div>
+    </div>
+
     <div class="section__container header__container">
       <div class="header__content">
         <h1>Providing an Exceptional Health Guidance!</h1>
@@ -310,6 +330,31 @@
     </table>
   </div>
 
+  <!-- Footer Section -->
+  <section id="contact">
+    <footer style="background-color: #ffffff; padding: 20px 0; text-align: center;">
+      <h3>Contact Us through these social links!</h3><br>
+
+      <div class="social-links"
+        style="display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 10px;">
+        <a href="https://www.linkedin.com/company/medpiper/" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"
+            style="height: 24px; width: 24px;">
+        </a>
+        <a href="https://x.com/medpiper?s=11" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"
+            style="height: 24px; width: 24px;">
+        </a>
+      </div>
+
+      <p style="margin-top: 10px; color: #6c757d; text-align: center;">
+        &copy; 2024 MedPiper Technologies Pvt Ltd. All rights reserved.
+      </p>
+    </footer>
+  </section>
+
+
+
   <script>
     let orderId;
     let countdownInterval;
@@ -523,7 +568,7 @@
           `;
             } else {
               const populationBox = document.querySelector('#population-box');
-              populationBox.innerHTML = `<h3>Population data not available for ${city}</h3>`;
+              populationBox.innerHTML = `<h3></h3>`;
             }
 
             stopTimer();
@@ -643,6 +688,12 @@
         })
         .catch(error => console.error('Error:', error));
     });
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
 
   </script>
 </body>
